@@ -11,7 +11,7 @@
     <test name="Users API - Regression">
         <groups>
             <run>
-                <include name="regression"/>
+                <include name="sanity"/>
             </run>
         </groups>
         <packages>
