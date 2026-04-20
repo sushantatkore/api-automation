@@ -10,8 +10,8 @@ public class LoginService {
     public ApiResponse login(String username, String password) {
         Response raw = RequestBuilder.createUnauthenticated()
                 .build()
-                .body(Map.of("username", username, "password", password))
-                .post("/auth/login"); // <-- your actual login path
+                .body(Map.of("email", username, "password", password))
+                .post("user-api/auth/login"); // <-- your actual login path
         return new ApiResponse(raw);
     }
 }

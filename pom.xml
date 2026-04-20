@@ -13,8 +13,8 @@
     <description>Enterprise-grade API automation framework using Rest Assured + TestNG</description>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <restassured.version>5.4.0</restassured.version>
@@ -28,10 +28,10 @@
         <slf4j.version>2.0.13</slf4j.version>
         <aspectj.version>1.9.22</aspectj.version>
         <commons.lang3.version>3.14.0</commons.lang3.version>
-        <lombok.version>1.18.32</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
 
         <maven.surefire.version>3.2.5</maven.surefire.version>
-        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
         <allure.maven.version>2.12.0</allure.maven.version>
 
         <test.env>qa</test.env>
@@ -154,6 +154,8 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
+
+                    <!-- Annotation processors for Lombok -->
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -161,6 +163,11 @@
                             <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
+
+                    <!-- Java 26 compatibility flags -->
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
 
@@ -191,15 +198,24 @@
             </plugin>
 
             <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>${allure.maven.version}</version>
-                <configuration>
-                    <reportVersion>${allure.version}</reportVersion>
-                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
-                    <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
-                </configuration>
-            </plugin>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-maven</artifactId>
+    <version>2.12.0</version>
+    <configuration>
+        <reportVersion>2.27.0</reportVersion>
+        <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+        <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
+    </configuration>
+    <executions>
+        <execution>
+            <id>allure-report</id>
+            <phase>test</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
         </plugins>
     </build>
 
