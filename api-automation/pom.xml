@@ -28,10 +28,10 @@
         <slf4j.version>2.0.13</slf4j.version>
         <aspectj.version>1.9.22</aspectj.version>
         <commons.lang3.version>3.14.0</commons.lang3.version>
-        <lombok.version>1.18.34</lombok.version>
+        <lombok.version>1.18.32</lombok.version>
 
         <maven.surefire.version>3.2.5</maven.surefire.version>
-        <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
+        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
         <allure.maven.version>2.12.0</allure.maven.version>
 
         <test.env>qa</test.env>
@@ -150,11 +150,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
+                <version>3.13.0</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-
+                    <release>21</release>
                     <!-- Annotation processors for Lombok -->
                     <annotationProcessorPaths>
                         <path>
@@ -164,10 +162,10 @@
                         </path>
                     </annotationProcessorPaths>
 
-                    <!-- Java 26 compatibility flags -->
+                    <!-- Java 21 compatibility flags -->
                     <compilerArgs>
                         <arg>-parameters</arg>
-                    </compilerArgs>
+                    </compilerArgs>          
                 </configuration>
             </plugin>
 
